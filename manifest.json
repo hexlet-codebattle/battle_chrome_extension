@@ -6,16 +6,18 @@
   "version": "0.1.0",
 
   "permissions": [
-    "https://secure.flickr.com/"
+    "tabs"
   ],
   "browser_action": {
-    "default_icon": "images/icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "images/icon.png"
+    //NOTE для первого релиза, чтобы по клику переходили на сайт
+    //"default_popup": "popup.html"
   },
   "background": {
     "scripts": ["javascript/jquery-1.10.2.min.js",
                 "javascript/bullet.js",
                 "javascript/lodash.min.js",
-                "javascript/messages.js"]
+                "javascript/messages.js",
+                "javascript/events.js"]
   }
 }
