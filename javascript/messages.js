@@ -1,19 +1,23 @@
-var games = []
-var games_handlers = {
-  deleteGame: function(game) {
-    games = _.reject(games, {data: {id: game.data.id}})
+var messages = []
+
+var helpers = {
+  deleteMessage: function(msg) {
+    messages = _.reject(messages, {data: {id: msg.data.id}})
+  }
+}
+
+var handlers = {
+
+  openGame: function(msg) {
+    messages = messages.concat(msg);
   },
 
-  openGame: function(game) {
-    games = games.concat(game);
+  startGame: function(msg) {
+    this.helpers.deleteMessage(msg);
   },
 
-  startGame: function(game) {
-    this.deleteGame(game);
-  },
-
-  finishGame: function(game) {
-    this.deleteGame(game);
+  finishGame: function(msg) {
+    helpers.deleteMessage(msg);
   }
 
 }
@@ -37,9 +41,9 @@ $(function(){
     };
 
     bullet.onmessage = function(e){
-      game = $.parseJSON(e.data)
-      games_handlers[game.handler](game)
-      chrome.browserAction.setBadgeText({text: games.length + ""});
+      msg = $.parseJSON(e.data)
+      handlers[msg.handler](msg)
+      chrome.browserAction.setBadgeText({text: messages.length + ""});
     };
 
     bullet.onheartbeat = function(){
