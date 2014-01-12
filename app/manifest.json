@@ -10,8 +10,6 @@
   ],
   "browser_action": {
     "default_icon": "images/icon.png"
-    //NOTE для первого релиза, чтобы по клику переходили на сайт
-    //"default_popup": "popup.html"
   },
   "background": {
     "scripts": [

@@ -20,14 +20,13 @@
   },
   "homepage": "https://github.com/kaize/battle_chrome_extension",
   "dependencies": {
-    "grunt": "*",
-    "grunt-curl": "*",
-    "grunt-contrib-copy": "*",
-
     "lodash": "*",
     "jquery": "*"
   },
   "devDependencies": {
-    "grunt": "~0.4.2"
+    "grunt": "~0.4.2",
+    "grunt-curl": "*",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-compress": "*"
   }
 }
