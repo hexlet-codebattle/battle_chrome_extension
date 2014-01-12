@@ -17,7 +17,6 @@
     "scripts": ["javascript/jquery-1.10.2.min.js",
                 "javascript/bullet.js",
                 "javascript/lodash.min.js",
-                "javascript/messages.js",
-                "javascript/events.js"]
+                "javascript/messages.js"]
   }
 }
