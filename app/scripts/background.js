@@ -33,7 +33,8 @@ var handlers = {
   },
 
   startGame: function(msg) {
-    this.helpers.deleteMessage(msg);
+    //NOTE: Временно показываем игру в значке, даже если она начата
+    //helpers.deleteMessage(msg);
   },
 
   finishGame: function(msg) {
