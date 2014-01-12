@@ -1,0 +1,33 @@
+{
+  "name": "battle_chrome_extension",
+  "version": "0.0.0",
+  "description": "[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kaize/battle_chrome_extension/trend.png)](https://bitdeli.com/free \"Bitdeli Badge\")",
+  "main": "npm init",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kaize/battle_chrome_extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaize/battle_chrome_extension/issues"
+  },
+  "homepage": "https://github.com/kaize/battle_chrome_extension",
+  "dependencies": {
+    "grunt": "*",
+    "grunt-curl": "*",
+    "grunt-contrib-copy": "*",
+
+    "lodash": "*",
+    "jquery": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2"
+  }
+}

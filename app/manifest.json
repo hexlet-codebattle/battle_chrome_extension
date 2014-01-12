@@ -14,9 +14,11 @@
     //"default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["javascript/jquery-1.10.2.min.js",
-                "javascript/bullet.js",
-                "javascript/lodash.min.js",
-                "javascript/messages.js"]
+    "scripts": [
+      "lib/jquery.min.js",
+      "lib/bullet.js",
+      "lib/lodash.min.js",
+      "scripts/background.js"
+   ]
   }
 }
