@@ -17,7 +17,7 @@ module.exports = function(grunt) {
           archive: 'dist/app.zip'
         },
         files: [
-          {expand: true, src: ['app/*']}
+          {expand: true, src: ['app/**/*']}
         ]
       }
     },
