@@ -1,7 +1,7 @@
 {
   "name": "battle_chrome_extension",
-  "version": "0.0.0",
-  "description": "[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/kaize/battle_chrome_extension/trend.png)](https://bitdeli.com/free \"Bitdeli Badge\")",
+  "version": "0.0.1",
+  "description": "",
   "main": "npm init",
   "directories": {
     "test": "test"
