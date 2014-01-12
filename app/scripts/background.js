@@ -1,3 +1,13 @@
+var settings = {
+  host: "http://www.wddx.ru"
+};
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+  chrome.tabs.create({'url': settings.host}, function(tab) {
+    // tab opened
+  });
+});
+
 var messages = []
 
 var helpers = {
