@@ -3,6 +3,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-git');
+  grunt.loadNpmTasks('grunt-shell');
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -33,6 +36,29 @@ module.exports = function(grunt) {
       jquery: {
         src: "node_modules/jquery/dist/jquery.min.js",
         dest: "app/lib/jquery.min.js"
+      },
+      react: {
+        src: "src/react/build/react.min.js",
+        dest: "app/lib/react.min.js"
+      }
+    },
+    gitclone: {
+      reactjs: {
+        options: {
+          repository: "https://github.com/facebook/react",
+          directory: "src/react"
+        }
+      }
+    },
+    shell: {
+      build_react: {
+        stdout: true,
+        command: [
+          'cd src/react',
+          'npm install',
+          'mkdir build',
+          'grunt build'
+        ].join('&&')
       }
     }
   });
