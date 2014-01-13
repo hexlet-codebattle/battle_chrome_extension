@@ -1,5 +1,6 @@
 var settings = {
-  host: "http://www.wddx.ru"
+  host: "http://www.wddx.ru",
+  api_call: "ws://wddx.ru/ws/api/v1/games"
 };
 
 chrome.browserAction.onClicked.addListener(function(tab) {
@@ -45,7 +46,7 @@ var handlers = {
 
 $(function(){
   (function establish_connection(){
-    var bullet = $.bullet('ws://wddx.ru/ws/games');
+    var bullet = $.bullet(settings.api_call);
     bullet.onopen = function(){
       console.log('bullet: opened');
     };
