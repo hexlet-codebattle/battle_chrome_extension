@@ -1,10 +1,14 @@
 module.exports = function(grunt) {
+  grunt.loadNpmTasks('grunt-available-tasks');
   grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    availabletasks: {
+      tasks: {}
+    },
     curl: {
       long:{
         src: "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
