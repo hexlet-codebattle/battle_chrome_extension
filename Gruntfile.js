@@ -3,8 +3,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
-  grunt.loadNpmTasks('grunt-git');
-  grunt.loadNpmTasks('grunt-shell');
 
   // Project configuration.
   grunt.initConfig({
@@ -12,10 +10,13 @@ module.exports = function(grunt) {
     availabletasks: {
       tasks: {}
     },
-    curl: {
+    'curl-dir': {
       long:{
-        src: "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
-        dest: "app/lib/bullet.js"
+        src: [
+          "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
+          "http://www.reactjs.com/dl/react-1.0.min.js"
+        ],
+        dest: "app/lib"
       }
     },
     compress: {
@@ -36,29 +37,6 @@ module.exports = function(grunt) {
       jquery: {
         src: "node_modules/jquery/dist/jquery.min.js",
         dest: "app/lib/jquery.min.js"
-      },
-      react: {
-        src: "src/react/build/react.min.js",
-        dest: "app/lib/react.min.js"
-      }
-    },
-    gitclone: {
-      reactjs: {
-        options: {
-          repository: "https://github.com/facebook/react",
-          directory: "src/react"
-        }
-      }
-    },
-    shell: {
-      build_react: {
-        stdout: true,
-        command: [
-          'cd src/react',
-          'npm install',
-          'mkdir build',
-          'grunt build'
-        ].join('&&')
       }
     }
   });
