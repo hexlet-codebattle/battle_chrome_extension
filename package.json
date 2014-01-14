@@ -28,8 +28,6 @@
     "grunt-curl": "*",
     "grunt-contrib-copy": "*",
     "grunt-contrib-compress": "*",
-    "grunt-available-tasks": "*",
-    "grunt-git": "*",
-    "grunt-shell": "*"
+    "grunt-available-tasks": "*"
   }
 }
