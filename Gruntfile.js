@@ -14,7 +14,7 @@ module.exports = function(grunt) {
       long:{
         src: [
           "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
-          "http://www.reactjs.com/dl/react-1.0.min.js"
+          "http://fb.me/react-0.8.0.min.js"
         ],
         dest: "app/lib"
       }
