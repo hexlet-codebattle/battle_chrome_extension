@@ -9,14 +9,15 @@
     "tabs"
   ],
   "browser_action": {
-    "default_icon": "images/icon.png"
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": [
       "lib/jquery.min.js",
       "lib/bullet.js",
       "lib/lodash.min.js",
-      "scripts/background.js"
+      "scripts/build/background.js"
    ]
   }
 }
