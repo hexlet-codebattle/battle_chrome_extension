@@ -3,7 +3,7 @@
 
   "name": "Battlecode games",
   "description": "This extension shows how many games opened on wddx.ru.",
-  "version": "0.1.3",
+  "version": "0.1.4",
 
   "permissions": [
     "tabs"
