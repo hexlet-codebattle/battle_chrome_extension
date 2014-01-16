@@ -16,6 +16,10 @@ var helpers = {
     messages = _.reject(messages, {data: {id: msg.data.id}})
   },
 
+  clearMessages: function() {
+    messages = []
+  },
+
   setBadgeText: function() {
     //NOTE Можно не пересчитывать каждый раз полностью.
     var msg_count = messages.length;
@@ -53,10 +57,14 @@ $(function(){
 
     bullet.ondisconnect = function(){
       console.log('bullet: disconnected');
+      helpers.clearMessages();
+      helpers.setBadgeText();
     };
 
     bullet.onclose = function(){
       console.log('bullet: closed');
+      helpers.clearMessages();
+      helpers.setBadgeText();
     };
 
     bullet.onmessage = function(e){
