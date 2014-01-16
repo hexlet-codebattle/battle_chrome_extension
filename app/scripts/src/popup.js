@@ -10,20 +10,13 @@ $(function() {
         return <BattleGame game={message.data} />;
       });
 
-      return (
-        <div>
-          <pre>
-            {games}
-          </pre>
-        </div>
-      )
+      return <div>
+        <pre>
+          {games}
+        </pre>
+      </div>
     }
   });
 
   React.renderComponent(<BattleApp messages={messages}/>, document.getElementById('games'));
-
-  $('a').click(function(){
-     chrome.tabs.create({url: $(this).attr('href')});
-     return false;
-   });
 });
