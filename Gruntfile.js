@@ -3,6 +3,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-react');
 
   // Project configuration.
   grunt.initConfig({
@@ -37,6 +38,17 @@ module.exports = function(grunt) {
       jquery: {
         src: "node_modules/jquery/dist/jquery.min.js",
         dest: "app/lib/jquery.min.js"
+      }
+    },
+    react: {
+      compile: {
+        files: [{
+          expand: true,
+          cwd: 'app/scripts/src',
+          src: ['**/*.js'],
+          dest: 'app/scripts/build',
+          ext: '.js'
+        }]
       }
     }
   });
