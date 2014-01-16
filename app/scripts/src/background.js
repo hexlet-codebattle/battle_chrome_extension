@@ -3,12 +3,6 @@ var settings = {
   api_call: "ws://wddx.ru/ws/api/v1/games"
 };
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.create({'url': settings.host}, function(tab) {
-    // tab opened
-  });
-});
-
 var messages = []
 
 var helpers = {
