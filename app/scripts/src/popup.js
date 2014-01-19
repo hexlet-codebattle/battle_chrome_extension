@@ -1,12 +1,25 @@
 /** @jsx React.DOM */
 $(function() {
 
-  var messages = chrome.extension.getBackgroundPage().messages;
   var settings = chrome.extension.getBackgroundPage().settings;
 
   var BattleApp = React.createClass({
+    getInitialState: function() {
+      return {messages: []};
+    },
+
+    getMessagesFromServer: function() {
+      var messages = chrome.extension.getBackgroundPage().messages;
+      this.setState({messages: messages});
+    },
+
+    componentWillMount: function() {
+      this.getMessagesFromServer();
+      setInterval(this.getMessagesFromServer, 500);
+    },
+
     render: function() {
-      var games = this.props.messages.map(function (message) {
+      var games = this.state.messages.map(function (message) {
         return <BattleGame game={message.data} />;
       });
 
@@ -18,5 +31,5 @@ $(function() {
     }
   });
 
-  React.renderComponent(<BattleApp messages={messages}/>, document.getElementById('games'));
+  React.renderComponent(<BattleApp />, document.getElementById('games'));
 });
