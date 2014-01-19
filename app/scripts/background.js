@@ -53,6 +53,10 @@ $(function(){
     var bullet = $.bullet(settings.api_call);
     bullet.onopen = function(){
       console.log('bullet: opened');
+      //FIXME после гибернации не срабатывает ondisconnect,
+      //поэтому сообщения подчищаем тут.
+      helpers.clearMessages();
+      helpers.setBadgeText();
     };
 
     bullet.ondisconnect = function(){
