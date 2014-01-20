@@ -4,10 +4,10 @@ var settings = chrome.extension.getBackgroundPage().settings;
 
 var BattleGame = React.createClass({
 
-   handleLinkClick: function(e) {
-     e.preventDefault();
-     chrome.tabs.create({url: e.target.href});
-   },
+  handleLinkClick: function(e) {
+    e.preventDefault();
+    chrome.tabs.create({url: e.target.href});
+  },
 
   render: function() {
     href = settings.host + "/games/" + this.props.game.id + "/join";

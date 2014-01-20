@@ -17,13 +17,11 @@ $(function() {
     },
 
     render: function() {
-      var games = this.state.messages.map(function (message) {
-        return <BattleGame game={message.data} />;
-      });
-
       return <div>
         <pre>
-          {games}
+          {this.state.messages.map(function (message) {
+            return <BattleGame game={message.data} />;
+          })}
         </pre>
       </div>
     }
