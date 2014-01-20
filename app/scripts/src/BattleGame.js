@@ -10,7 +10,7 @@ var BattleGame = React.createClass({
    },
 
   render: function() {
-    href = settings.host + "/games/247/join"
+    href = settings.host + "/games/" + this.props.game.id + "/join";
     return (
       <div>
         <a href={href} onClick={this.handleLinkClick}>Join</a>

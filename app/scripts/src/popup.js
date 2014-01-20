@@ -1,8 +1,6 @@
 /** @jsx React.DOM */
 $(function() {
 
-  var settings = chrome.extension.getBackgroundPage().settings;
-
   var BattleApp = React.createClass({
     getInitialState: function() {
       return {messages: []};
