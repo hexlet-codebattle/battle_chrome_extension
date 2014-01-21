@@ -32,8 +32,7 @@ var handlers = {
   },
 
   startGame: function(msg) {
-    //NOTE: Временно показываем игру в значке, даже если она начата
-    //helpers.deleteMessage(msg);
+    messages = messages.concat(msg);
   },
 
   finishGame: function(msg) {
