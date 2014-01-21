@@ -47,6 +47,8 @@ $(function(){
     var bullet = $.bullet(settings.api_call);
     bullet.onopen = function(){
       console.log('bullet: opened');
+      helpers.clearMessages();
+      helpers.setBadgeText();
     };
 
     bullet.ondisconnect = function(){
