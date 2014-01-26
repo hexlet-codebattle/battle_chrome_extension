@@ -20,6 +20,10 @@ var helpers = {
     messages = []
   },
 
+  addMessage: function() {
+    messages = messages.concat(msg);
+  },
+
   setBadgeText: function() {
     //NOTE Можно не пересчитывать каждый раз полностью.
     var msg_count = messages.length;
@@ -34,12 +38,13 @@ var helpers = {
 var handlers = {
 
   openGame: function(msg) {
-    messages = messages.concat(msg);
+    helpers.addMessage(msg);
   },
 
   startGame: function(msg) {
     //NOTE: Временно показываем игру в значке, даже если она начата
-    //helpers.deleteMessage(msg);
+    helpers.deleteMessage(msg);
+    helpers.addMessage(msg);
   },
 
   finishGame: function(msg) {
