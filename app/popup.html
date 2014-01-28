@@ -1,15 +1,20 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <script type="text/javascript" src="lib/jquery.min.js"></script>
   <script type="text/javascript" src="lib/react-0.8.0.min.js"></script>
-  <script type="text/javascript" src="scripts/build/BattleGame.js"></script>
   <script type="text/javascript" src="scripts/build/popup.js"></script>
+  <!--[FIXME]Использовать загрузчик.-->
+  <script type="text/javascript" src="scripts/build/OpenedGames.js"></script>
+  <script type="text/javascript" src="scripts/build/StartedGames.js"></script>
 </head>
 
 <body>
-  <div id="games"></div>
+  <!--[FIXME] разобраться с дизайном-->
+  <h5>Opened games:</h5>
+  <div id="opened_games"></div>
+  <h5>Started games:</h5><div id="started_games"></div>
 </body>
 </html>
 

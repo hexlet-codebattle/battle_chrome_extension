@@ -3,20 +3,24 @@ var settings = {
   api_call: "ws://wddx.ru/ws/api/v1/games"
 };
 
-var messages = []
+var messages = {"opened": [], "started": []}
 
 var helpers = {
-  deleteMessage: function(msg) {
-    messages = _.reject(messages, {data: {id: msg.data.id}})
+  deleteMessage: function(type, msg) {
+    messages[type] = _.reject(messages[type], {data: {id: msg.data.id}})
   },
 
   clearMessages: function() {
-    messages = []
+    messages = {"opened": [], "started": []}
+  },
+
+  addMessage: function(type, msg) {
+    messages[type] = messages[type].concat(msg);
   },
 
   setBadgeText: function() {
     //NOTE Можно не пересчитывать каждый раз полностью.
-    var msg_count = messages.length;
+    var msg_count = messages["opened"].length + messages["started"].length;
     var text = "";
     if (msg_count > 0){
       text += msg_count;
@@ -28,15 +32,16 @@ var helpers = {
 var handlers = {
 
   openGame: function(msg) {
-    messages = messages.concat(msg);
+    helpers.addMessage("opened", msg);
   },
 
   startGame: function(msg) {
-    messages = messages.concat(msg);
+    helpers.deleteMessage("opened", msg);
+    helpers.addMessage("started", msg);
   },
 
   finishGame: function(msg) {
-    helpers.deleteMessage(msg);
+    helpers.deleteMessage("started", msg);
   }
 
 }

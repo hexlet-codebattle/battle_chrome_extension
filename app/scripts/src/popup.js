@@ -1,40 +1,24 @@
 /** @jsx React.DOM */
-$(function() {
+var settings = chrome.extension.getBackgroundPage().settings;
 
-  var BattleApp = React.createClass({
-    getInitialState: function() {
-      return {messages: []};
-    },
+var SetIntervalMixin = {
+  getMessagesFromServer: function() {
+    var messages = chrome.extension.getBackgroundPage().messages;
+    this.setState({messages: messages[this.props.type]});
+  },
 
-    getMessagesFromServer: function() {
-      var messages = chrome.extension.getBackgroundPage().messages;
-      this.setState({messages: messages});
-    },
+  componentWillMount: function() {
+    this.getMessagesFromServer();
+    setInterval(this.getMessagesFromServer, 500);
+  },
 
-    componentWillMount: function() {
-      this.getMessagesFromServer();
-      setInterval(this.getMessagesFromServer, 500);
-    },
-
-    render: function() {
-      //NOTE Мне это не нравится, но JSX не поддерживает if-else
-      if (this.state.messages.length == 0) {
-        return <div>
-          <pre>
-            <label>No open games</label>
-          </pre>
-        </div>
-      }else {
-        return <div>
-          <pre>
-            {this.state.messages.map(function (message) {
-              return <BattleGame game={message.data} />;
-            })}
-          </pre>
-        </div>
-      }
+  handleLinkClick: function(e) {
+    e.preventDefault();
+    chrome.tabs.create({url: e.target.href});
   }
-});
+}
 
-  React.renderComponent(<BattleApp />, document.getElementById('games'));
+$(function() {
+  React.renderComponent(<OpenedGames type="opened"/>, document.getElementById('opened_games'));
+  React.renderComponent(<StartedGames type="started"/>, document.getElementById('started_games'));
 });
