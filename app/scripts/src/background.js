@@ -41,7 +41,9 @@ var handlers = {
   },
 
   finishGame: function(msg) {
-    helpers.deleteMessage("started", msg);
+    if (!helpers.deleteMessage("started", msg)) {
+      helpers.deleteMessage("opened", msg);
+    }
   }
 
 }
