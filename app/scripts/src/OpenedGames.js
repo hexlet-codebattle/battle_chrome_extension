@@ -20,7 +20,11 @@ var OpenedGames = React.createClass({
           return (
             <div>
               {game} game by <b>{message.data.player.nickname}</b>.<br/>
-              <LangsLinks langs={message.data.game.langs} href={href}/>
+              <LangsLinks
+                langs={message.data.game.langs}
+                href={href}
+                onLinkClick={this.handleLinkClick}
+              />
             </div>);
         }, this)
     }</div>

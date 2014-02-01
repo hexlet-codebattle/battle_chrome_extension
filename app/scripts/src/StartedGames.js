@@ -9,22 +9,23 @@ var StartedGames = React.createClass({
 //[TODO]Обрабатывать случай, когда нет игр
   render: function() {
     return <div>
-      <pre>{
-        this.state.messages.map(function (message) {
+        {this.state.messages.map(function (message) {
           //[FIXME] получать ссылку на игру с сервера
           href = settings.host + "/games/" + message.data.id;
+          first_player = _.first(message.data.players);
+          second_player = _.last(message.data.players);
 
-          link = <a href={href} onClick={this.handleLinkClick}>watch game</a>;
+          players = <a href={href} onClick={this.handleLinkClick}>
+                      {first_player.nickname} vs
+                      {second_player.nickname}
+                    </a>;
 
-          players = <span>
-                      {_.first(message.data.players).nickname} vs
-                      {_.last(message.data.players).nickname}
-                    </span>;
-          game_id = <span>({message.data.id})</span>;
+          langs = <span>
+                    {first_player.lang}/{second_player.lang}
+                  </span>
 
-          return <div>{link}: {players} {game_id}</div>
-        }, this)
-      }</pre>
+          return <div>{langs} : {players}</div>
+        }, this)}
     </div>
   }
 });
