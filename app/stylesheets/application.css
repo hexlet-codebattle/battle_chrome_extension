@@ -1,3 +1,17 @@
 .main_div {
   width: 300px;
 }
+.game_div {
+  font-size: 13;
+}
+h5 {
+  margin: 0;
+}
+
+.game_link {
+  text-decoration: none;
+}
+
+.game_passed_link {
+ text-decoration: line-through;
+}

@@ -21,7 +21,7 @@ var OpenedGames = React.createClass({
             <div>
               {game} game by <b>{message.data.player.nickname}</b>.<br/>
               <LangsLinks
-                langs={message.data.game.langs}
+                langs={message.data.extended_langs}
                 href={href}
                 onLinkClick={this.handleLinkClick}
               />

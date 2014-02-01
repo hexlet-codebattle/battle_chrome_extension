@@ -15,7 +15,7 @@ var StartedGames = React.createClass({
           first_player = _.first(message.data.players);
           second_player = _.last(message.data.players);
 
-          players = <a href={href} onClick={this.handleLinkClick}>
+          players = <a href={href} onClick={this.handleLinkClick} className="game_link">
                       {first_player.nickname} vs
                       {second_player.nickname}
                     </a>;
