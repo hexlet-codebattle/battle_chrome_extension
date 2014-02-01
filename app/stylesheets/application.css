@@ -10,8 +10,10 @@ h5 {
 
 .game_link {
   text-decoration: none;
+  outline: 0px;
 }
 
 .game_passed_link {
- text-decoration: line-through;
+  text-decoration: line-through;
+  outline: 0px;
 }
