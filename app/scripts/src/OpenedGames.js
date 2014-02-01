@@ -8,23 +8,22 @@ var OpenedGames = React.createClass({
 
 //[TODO]Обрабатывать случай, когда нет игр
   render: function() {
-    return <div>
-      <pre>{
+    return <div> {
         this.state.messages.map(function (message) {
           href = settings.host + "/games/" + message.data.id + "/join";
 
-          link = <a href={href} onClick={this.handleLinkClick}>
+          game = <span>
                    {message.data.game.level}{'\u00A0'}
                    {message.data.player.lang}
-                   game</a>;
-          player = <span>{message.data.player.nickname}</span>;
+                 </span>;
 
-          game_id = <span>({message.data.id})</span>;
-
-          return <div>{link}: {player}{game_id}</div>
+          return (
+            <div>
+              {game} game by <b>{message.data.player.nickname}</b>.<br/>
+              <LangsLinks langs={message.data.game.langs} href={href}/>
+            </div>);
         }, this)
-      }</pre>
-    </div>
+    }</div>
   }
 });
 

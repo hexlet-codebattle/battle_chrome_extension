@@ -12,7 +12,7 @@ var StartedGames = React.createClass({
       <pre>{
         this.state.messages.map(function (message) {
           //[FIXME] получать ссылку на игру с сервера
-          href = settings.host + "/games/" + message.data.id + "/join";
+          href = settings.host + "/games/" + message.data.id;
 
           link = <a href={href} onClick={this.handleLinkClick}>watch game</a>;
 
