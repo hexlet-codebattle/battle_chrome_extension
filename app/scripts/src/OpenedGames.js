@@ -6,29 +6,42 @@ var OpenedGames = React.createClass({
 
   mixins: [SetIntervalMixin],
 
-  getGames: function() {
-    return this.state.messages.map(function (message) {
-      href = settings.host + "/games/" + message.data.id + "/join";
-
-      game = <span>
-        {message.data.game.level}{'\u00A0'}
-        {message.data.player.lang}
-      </span>;
-
-      return (
-        <div>
-          {game} game by <b>{message.data.player.nickname}</b>.<br/>
-          <LangsLinks
-            langs={message.data.extended_langs}
-            href={href}
-            onLinkClick={this.handleLinkClick}
-          />
-        </div>);
-    }, this);
-  },
-
   render: function() {
-    return <div>{this.state.messages.length > 0 ? this.getGames() : "No opened games"}</div>
+    return (
+      <div>
+        {this.state.messages.length > 0 ?
+          _.map(this.state.messages, function (message) {
+            href = settings.host + "/games/" + message.data.id + "/join";
+
+            return (
+              <div>
+                <span>
+                  {message.data.game.level}{'\u00A0'}
+                  {message.data.player.lang}
+                  game by <b>{message.data.player.nickname}</b>.<br/>
+                </span>
+
+                <span>
+                  join as:
+                    {_.map(message.data.extended_langs, function (lang_info) {
+                      href = href + "?lang=" + lang_info.lang;
+                      return (
+                        <span>
+                          <a href={href} onClick={this.handleLinkClick}
+                             className={lang_info.passed ? "game_passed_link" : ""}>
+                            <span>{lang_info.lang}</span>
+                          </a>
+                        </span>
+                      )
+                    }, this)}
+                </span>
+              </div>
+            )
+          }, this)
+        : "No opened games"
+        }
+      </div>
+    )
   }
 });
 

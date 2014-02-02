@@ -6,29 +6,28 @@ var StartedGames = React.createClass({
 
   mixins: [SetIntervalMixin],
 
-  getGames: function(){
-    return this.state.messages.map(function (message) {
-      //[FIXME] получать ссылку на игру с сервера
-      href = settings.host + "/games/" + message.data.id;
-      first_player = _.first(message.data.players);
-      second_player = _.last(message.data.players);
-
-      players = <a href={href} onClick={this.handleLinkClick} className="game_link">
-        {first_player.nickname} vs
-        {second_player.nickname}
-      </a>;
-
-      langs = <span>
-        {first_player.lang}/{second_player.lang}
-      </span>
-
-      return <div>{langs} : {players}</div>
-    }, this);
-  },
-
-//[TODO]Обрабатывать случай, когда нет игр
   render: function() {
-    return <div>{this.state.messages > 0 ? this.getGames() : "No started games"}</div>
+
+    return (
+      <div>
+        {this.state.messages > 0 ?
+          _.map(this.state.messages, function (message) {
+            href = settings.host + "/games/" + message.data.id;
+            nicknames = _.pluck(message.data.players, "nickname");
+            player_langs = _.pluck(message.data.players, "langs");
+
+            <div>
+              <span>{player_langs.join("/")} : </span>
+              <a href={href} onClick={this.handleLinkClick} className="game_link">
+                {nicknames.join(" vs ")}
+              </a>
+            </div>
+
+          }, this)
+        : "No started games"
+        }
+      </div>
+    )
   }
 });
 
