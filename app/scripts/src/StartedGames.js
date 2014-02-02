@@ -10,19 +10,20 @@ var StartedGames = React.createClass({
 
     return (
       <div>
-        {this.state.messages > 0 ?
+        {this.state.messages.length > 0 ?
           _.map(this.state.messages, function (message) {
             href = settings.host + "/games/" + message.data.id;
             nicknames = _.pluck(message.data.players, "nickname");
-            player_langs = _.pluck(message.data.players, "langs");
+            player_langs = _.pluck(message.data.players, "lang");
 
-            <div>
-              <span>{player_langs.join("/")} : </span>
-              <a href={href} onClick={this.handleLinkClick} className="game_link">
-                {nicknames.join(" vs ")}
-              </a>
-            </div>
-
+            return (
+              <div>
+                <span>{player_langs.join("/")} : </span>
+                <a href={href} onClick={this.handleLinkClick} className="game_link">
+                  {nicknames.join(" vs ")}
+                </a>
+              </div>
+            )
           }, this)
         : "No started games"
         }
