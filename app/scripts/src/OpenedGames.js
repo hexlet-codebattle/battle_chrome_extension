@@ -26,7 +26,7 @@ var OpenedGames = React.createClass({
                     {_.map(message.data.extended_langs, function (lang_info) {
                       href = href + "?lang=" + lang_info.lang;
                       return (
-                        <span>
+                        <span className="join-lang">
                           <a href={href} onClick={this.handleLinkClick}
                              className={lang_info.passed ? "game_passed_link" : ""}>
                             <span>{lang_info.lang}</span>

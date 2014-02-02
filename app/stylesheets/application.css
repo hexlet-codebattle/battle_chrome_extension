@@ -18,3 +18,8 @@ a {
   text-decoration: line-through;
   outline: 0px;
 }
+
+span.join-lang {
+    margin-left: 6px
+}
+
