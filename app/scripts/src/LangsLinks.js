@@ -8,7 +8,7 @@ var LangsLinks = React.createClass({
     links =_.map(this.props.langs, function (lang_info) {
           href = this.props.href + "?lang=" + lang_info.lang;
           link = <a href={href} onClick={this.props.onLinkClick}
-                    className={lang_info.passed ? "game_passed_link" : "game_link"}>
+                    className={lang_info.passed ? "game_passed_link" : ""}>
                    <span>{lang_info.lang}</span>
                  </a>;
           return <span>{'\u00A0'}{link}</span>;

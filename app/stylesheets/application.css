@@ -8,9 +8,10 @@ h5 {
   margin: 0;
 }
 
-.game_link {
+a {
   text-decoration: none;
   outline: 0px;
+  color: #428bca;
 }
 
 .game_passed_link {
