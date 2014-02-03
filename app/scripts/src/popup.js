@@ -14,7 +14,7 @@ var SetIntervalMixin = {
 
   handleLinkClick: function(e) {
     e.preventDefault();
-    chrome.tabs.create({url: e.target.parentElement.href});
+    chrome.tabs.create({url: e.target.href});
   }
 }
 

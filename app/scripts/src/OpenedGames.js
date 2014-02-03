@@ -29,7 +29,7 @@ var OpenedGames = React.createClass({
                         <span className="join-lang">
                           <a href={href} onClick={this.handleLinkClick}
                              className={lang_info.passed ? "game_passed_link" : ""}>
-                            <span>{lang_info.lang}</span>
+                            {lang_info.lang}
                           </a>
                         </span>
                       )
