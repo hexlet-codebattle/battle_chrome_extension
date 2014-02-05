@@ -12,12 +12,16 @@ module.exports = function(grunt) {
       tasks: {}
     },
     'curl-dir': {
-      long:{
+      javascript: {
         src: [
           "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
           "http://fb.me/react-0.8.0.min.js"
         ],
         dest: "app/lib"
+      },
+      bootstrap: {
+        src:"http://bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css",
+        dest: "app/stylesheets"
       }
     },
     compress: {

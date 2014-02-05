@@ -1,16 +1,10 @@
 .main_div {
   width: 300px;
 }
-.game_div {
-  font-size: 13;
-}
-h5 {
-  margin: 0;
-}
 
-a {
-  text-decoration: none;
+a:focus {
   outline: 0px;
+  text-decoration: none;
   color: #428bca;
 }
 

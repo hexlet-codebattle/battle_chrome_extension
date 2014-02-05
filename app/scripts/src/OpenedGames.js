@@ -15,13 +15,13 @@ var OpenedGames = React.createClass({
 
             return (
               <div>
-                <span>
+                <div>
                   {message.data.game.level}{'\u00A0'}
                   {message.data.player.lang}
                   game by <b>{message.data.player.nickname}</b>.<br/>
-                </span>
+                </div>
 
-                <span>
+                <p>
                   join as:
                     {_.map(message.data.extended_langs, function (lang_info) {
                       href = href + "?lang=" + lang_info.lang;
@@ -34,7 +34,7 @@ var OpenedGames = React.createClass({
                         </span>
                       )
                     }, this)}
-                </span>
+                </p>
               </div>
             )
           }, this)
