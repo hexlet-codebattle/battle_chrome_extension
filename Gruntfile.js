@@ -5,6 +5,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-react');
 
+  grunt.registerTask('build', ['curl-dir', 'copy', 'react']);
+  grunt.registerTask('release', ['build', 'compress']);
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
