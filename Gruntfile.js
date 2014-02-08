@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-react');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['curl-dir', 'copy', 'react']);
   grunt.registerTask('release', ['build', 'compress']);
@@ -57,6 +58,15 @@ module.exports = function(grunt) {
           ext: '.js'
         }]
       }
+    },
+    watch: {
+      scripts: {
+        files: ['app/scripts/src/*.js'],
+        tasks: ['react'],
+        options: {
+          spawn: false,
+        },
+      },
     }
   });
 };
