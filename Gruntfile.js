@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       javascript: {
         src: [
           "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
-          "http://fb.me/react-0.8.0.min.js"
+          "http://fb.me/react-with-addons-0.8.0.min.js"
         ],
         dest: "app/lib"
       },

@@ -1,4 +1,5 @@
 /** @jsx React.DOM */
+
 var OpenedGames = React.createClass({
   getInitialState: function() {
     return {messages: []};
@@ -7,40 +8,22 @@ var OpenedGames = React.createClass({
   mixins: [SetIntervalMixin],
 
   render: function() {
+    var messages = this.state.messages;
+
     return (
-      <div>
-        {this.state.messages.length > 0 ?
-          _.map(this.state.messages, function (message) {
-            href = settings.host + "/games/" + message.data.id + "/join";
+      <dl>
+        <dt>
+          <h4>Opened games <span className="badge">{messages.length}</span></h4>
+        </dt>
 
+        {messages.length > 0 ?
+          messages.map(function(message) {
             return (
-              <div>
-                <div>
-                  {message.data.game.level}{'\u00A0'}
-                  {message.data.player.lang}
-                  game by <b>{message.data.player.nickname}</b>.<br/>
-                </div>
-
-                <p>
-                  join as:
-                    {_.map(message.data.extended_langs, function (lang_info) {
-                      href = href + "?lang=" + lang_info.lang;
-                      return (
-                        <span className="join-lang">
-                          <a href={href} onClick={this.handleLinkClick}
-                             className={lang_info.passed ? "game_passed_link" : ""}>
-                            {lang_info.lang}
-                          </a>
-                        </span>
-                      )
-                    }, this)}
-                </p>
-              </div>
+              <dd><OpenedGame key={message.id} message={message} /></dd>
             )
           }, this)
-        : "No opened games"
-        }
-      </div>
+        : ""}
+      </dl>
     )
   }
 });

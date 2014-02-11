@@ -1,5 +1,9 @@
-.main_div {
-  width: 300px;
+body {
+  padding: 10px;
+}
+
+dd {
+  margin-left: 20px;
 }
 
 a:focus {
@@ -8,12 +12,15 @@ a:focus {
   color: #428bca;
 }
 
-.game_passed_link {
+.container {
+  width: 350px !important;
+}
+
+.join-lang {
+  margin-left: 6px;
+}
+
+.game-passed-link {
   text-decoration: line-through;
   outline: 0px;
 }
-
-span.join-lang {
-    margin-left: 6px
-}
-

@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var settings = chrome.extension.getBackgroundPage().settings;
 
+//FIXME extract state to generic component
 var SetIntervalMixin = {
   getMessagesFromServer: function() {
     var messages = chrome.extension.getBackgroundPage().messages;
@@ -10,11 +11,6 @@ var SetIntervalMixin = {
   componentWillMount: function() {
     this.getMessagesFromServer();
     setInterval(this.getMessagesFromServer, 500);
-  },
-
-  handleLinkClick: function(e) {
-    e.preventDefault();
-    chrome.tabs.create({url: e.target.href});
   }
 }
 

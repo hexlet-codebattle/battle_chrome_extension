@@ -1,5 +1,6 @@
+//FIXME switch settings for development or production
 var settings = {
-  host: "http://www.wddx.ru",
+  host: "http://wddx.ru",
   api_call: "ws://wddx.ru/ws/api/v1/games"
 };
 
@@ -7,7 +8,7 @@ var messages = {"opened": [], "started": []}
 
 var helpers = {
   deleteMessage: function(type, msg) {
-    messages[type] = _.reject(messages[type], {data: {id: msg.data.id}})
+    messages[type] = _.reject(messages[type], {data: {id: msg.id}})
   },
 
   clearMessages: function() {
@@ -70,8 +71,8 @@ $(function(){
     };
 
     bullet.onmessage = function(e){
-      msg = $.parseJSON(e.data);
-      handlers[msg.handler](msg);
+      response = $.parseJSON(e.data);
+      handlers[response.handler](response.data);
       helpers.setBadgeText();
     };
 

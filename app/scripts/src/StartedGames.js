@@ -7,27 +7,29 @@ var StartedGames = React.createClass({
   mixins: [SetIntervalMixin],
 
   render: function() {
+    var messages = this.state.messages;
 
     return (
-      <div>
-        {this.state.messages.length > 0 ?
-          _.map(this.state.messages, function (message) {
-            href = settings.host + "/games/" + message.data.id;
-            nicknames = _.pluck(message.data.players, "nickname");
-            player_langs = _.pluck(message.data.players, "lang");
+      <dl>
+        <dt><h4>Started games <span className="badge">{messages.length}</span></h4></dt>
+        {messages.length > 0 ?
+          messages.map(function(message) {
+            href = settings.host + "/games/" + message.id;
+            nicknames = _.pluck(message.players, "nickname");
+            player_langs = _.pluck(message.players, "lang");
 
             return (
-              <div>
+              <dd>
                 <span>{player_langs.join("/")} : </span>
-                <a href={href} onClick={this.handleLinkClick} className="game_link">
+                <a href={href} target="_blank" className="game-link">
                   {nicknames.join(" vs ")}
                 </a>
-              </div>
+              </dd>
             )
           }, this)
-        : "No started games"
+        : ""
         }
-      </div>
+      </dl>
     )
   }
 });
