@@ -1,32 +1,27 @@
+//FIXME switch settings for development or production
 var settings = {
-  host: "http://www.wddx.ru",
+  host: "http://wddx.ru",
   api_call: "ws://wddx.ru/ws/api/v1/games"
 };
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.create({'url': settings.host}, function(tab) {
-    // tab opened
-  });
-});
-
-var messages = []
+var messages = {"opened": [], "started": []}
 
 var helpers = {
-  deleteMessage: function(msg) {
-    messages = _.reject(messages, {data: {id: msg.data.id}})
+  deleteMessage: function(type, msg) {
+    messages[type] = _.reject(messages[type], {id: msg.id})
   },
 
   clearMessages: function() {
-    messages = []
+    messages = {"opened": [], "started": []}
   },
 
-  addMessage: function() {
-    messages = messages.concat(msg);
+  addMessage: function(type, msg) {
+    messages[type] = messages[type].concat(msg);
   },
 
   setBadgeText: function() {
     //NOTE Можно не пересчитывать каждый раз полностью.
-    var msg_count = messages.length;
+    var msg_count = messages["opened"].length + messages["started"].length;
     var text = "";
     if (msg_count > 0){
       text += msg_count;
@@ -38,17 +33,18 @@ var helpers = {
 var handlers = {
 
   openGame: function(msg) {
-    helpers.addMessage(msg);
+    helpers.addMessage("opened", msg);
   },
 
   startGame: function(msg) {
-    //NOTE: Временно показываем игру в значке, даже если она начата
-    helpers.deleteMessage(msg);
-    helpers.addMessage(msg);
+    helpers.deleteMessage("opened", msg);
+    helpers.addMessage("started", msg);
   },
 
   finishGame: function(msg) {
-    helpers.deleteMessage(msg);
+    if (!helpers.deleteMessage("started", msg)) {
+      helpers.deleteMessage("opened", msg);
+    }
   }
 
 }
@@ -58,8 +54,6 @@ $(function(){
     var bullet = $.bullet(settings.api_call);
     bullet.onopen = function(){
       console.log('bullet: opened');
-      //FIXME после гибернации не срабатывает ondisconnect,
-      //поэтому сообщения подчищаем тут.
       helpers.clearMessages();
       helpers.setBadgeText();
     };
@@ -77,8 +71,8 @@ $(function(){
     };
 
     bullet.onmessage = function(e){
-      msg = $.parseJSON(e.data);
-      handlers[msg.handler](msg);
+      response = $.parseJSON(e.data);
+      handlers[response.handler](response.data);
       helpers.setBadgeText();
     };
 

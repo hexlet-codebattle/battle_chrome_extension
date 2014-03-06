@@ -3,20 +3,22 @@
 
   "name": "Battlecode games",
   "description": "This extension shows how many games opened on wddx.ru.",
-  "version": "0.1.6",
+  "version": "0.2.1",
 
   "permissions": [
-    "tabs"
+    "tabs",
+    "<all_urls>"
   ],
   "browser_action": {
-    "default_icon": "images/icon.png"
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
   },
   "background": {
     "scripts": [
       "lib/jquery.min.js",
       "lib/bullet.js",
       "lib/lodash.min.js",
-      "scripts/background.js"
+      "scripts/build/background.js"
    ]
   }
 }

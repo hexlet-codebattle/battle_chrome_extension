@@ -1,0 +1,26 @@
+body {
+  padding: 10px;
+}
+
+dd {
+  margin-left: 20px;
+}
+
+a:focus {
+  outline: 0px;
+  text-decoration: none;
+  color: #428bca;
+}
+
+.container {
+  width: 350px !important;
+}
+
+.join-lang {
+  margin-left: 6px;
+}
+
+.game-passed-link {
+  text-decoration: line-through;
+  outline: 0px;
+}
