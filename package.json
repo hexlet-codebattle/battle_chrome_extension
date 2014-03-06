@@ -20,8 +20,8 @@
   },
   "homepage": "https://github.com/kaize/battle_chrome_extension",
   "dependencies": {
-    "lodash": "*",
-    "jquery": "*"
+    "lodash": "2.4.1",
+    "jquery": "2.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.2",
