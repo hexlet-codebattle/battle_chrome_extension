@@ -8,7 +8,7 @@ var messages = {"opened": [], "started": []}
 
 var helpers = {
   deleteMessage: function(type, msg) {
-    messages[type] = _.reject(messages[type], {data: {id: msg.id}})
+    messages[type] = _.reject(messages[type], {id: msg.id})
   },
 
   clearMessages: function() {
