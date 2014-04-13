@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "Battlecode games",
-  "description": "This extension shows how many games opened on wddx.ru.",
-  "version": "0.2.1",
+  "description": "This extension shows how many games opened on codebattle.io.",
+  "version": "0.2.2",
 
   "permissions": [
     "tabs",

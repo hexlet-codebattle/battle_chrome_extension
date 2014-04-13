@@ -1,7 +1,7 @@
 //FIXME switch settings for development or production
 var settings = {
-  host: "http://wddx.ru",
-  api_call: "ws://wddx.ru/ws/api/v1/games"
+  host: "http://codebattle.io",
+  api_call: "ws://codebattle.io/ws/api/v1/games"
 };
 
 var messages = {"opened": [], "started": []}
