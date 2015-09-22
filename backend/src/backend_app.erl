@@ -8,7 +8,7 @@
 start(_StartType, _StartArgs) ->
     Dispatch = cowboy_router:compile([
                                       { '_', [
-                                              { "/api/v1/games", bullet_handler, [{handler, games_handler}]}
+                                              { "/ws/api/v1/games", bullet_handler, [{handler, games_handler}]}
                                              ]}
                                      ]),
     {ok, _} = cowboy:start_http(backend, 100, [{port, 8080}], [{env, [{dispatch, Dispatch}]}]),
