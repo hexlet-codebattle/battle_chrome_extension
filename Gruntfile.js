@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     'curl-dir': {
       javascript: {
         src: [
-          "https://raw2.github.com/extend/bullet/master/priv/bullet.js",
+          "https://raw.github.com/extend/bullet/master/priv/bullet.js",
           "http://fb.me/react-with-addons-0.8.0.min.js"
         ],
         dest: "app/lib"

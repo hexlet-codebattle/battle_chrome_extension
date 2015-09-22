@@ -1,0 +1,11 @@
+[{<<"bullet">>,
+  {git,"https://github.com/extend/bullet.git",
+       {ref,"a227184b3588f2b6e35cfe916d899ec945a1935b"}},
+  0},
+ {<<"cowboy">>,{pkg,<<"cowboy">>,<<"1.0.3">>},0},
+ {<<"cowlib">>,{pkg,<<"cowlib">>,<<"1.0.1">>},1},
+ {<<"jsx">>,
+  {git,"https://github.com/talentdeficit/jsx.git",
+       {ref,"7090494686f63b3e7d5b21445a16ebdbb1977b8f"}},
+  0},
+ {<<"ranch">>,{pkg,<<"ranch">>,<<"1.1.0">>},1}].

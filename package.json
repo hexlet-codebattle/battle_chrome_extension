@@ -29,7 +29,7 @@
     "grunt-contrib-copy": "*",
     "grunt-contrib-compress": "*",
     "grunt-available-tasks": "*",
-    "grunt-react": "*",
+    "grunt-react": "^0.8",
     "grunt-contrib-watch": "*"
   }
 }

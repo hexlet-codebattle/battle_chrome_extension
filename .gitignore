@@ -3,3 +3,17 @@ node_modules
 *.zip
 dist
 app/scripts/build/
+
+.rebar3
+backend/_*
+.eunit
+*.o
+*.beam
+*.plt
+*.swp
+*.swo
+.erlang.cookie
+ebin
+log
+erl_crash.dump
+.rebar
