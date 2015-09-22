@@ -25,7 +25,7 @@ handle_cast({openGame, GameId} = _Req, #state{pids = Pids} = State) ->
     [Pid ! {game, opened, GameId} || {Pid} <- ets:tab2list(Pids)],
     {noreply, State};
 
-handle_cast({finisGame, GameId} = _Msg, #state{pids=Pids} = State) ->
+handle_cast({finishGame, GameId} = _Msg, #state{pids=Pids} = State) ->
     [Pid ! {game, finished, GameId} || {Pid} <- ets:tab2list(Pids)],
     {noreply, State};
 
