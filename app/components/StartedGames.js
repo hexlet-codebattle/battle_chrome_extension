@@ -1,5 +1,6 @@
-/** @jsx React.DOM */
-var StartedGames = React.createClass({
+import SetIntervalMixin from "../mixin/mixin";
+
+export default React.createClass({
   getInitialState: function() {
     return {messages: []};
   },

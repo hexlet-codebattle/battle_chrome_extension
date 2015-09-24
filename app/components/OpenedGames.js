@@ -1,6 +1,8 @@
-/** @jsx React.DOM */
+import React from "react";
+import SetIntervalMixin from "../mixin/mixin";
+import OpenedGame from "./OpenedGame"
 
-var OpenedGames = React.createClass({
+export default React.createClass({
   getInitialState: function() {
     return {messages: []};
   },

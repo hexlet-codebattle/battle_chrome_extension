@@ -1,6 +1,6 @@
-/** @jsx React.DOM */
+import React from "react";
 
-var OpenedGame = React.createClass({
+export default  React.createClass({
   render: function() {
     var message = this.props.message;
     href = settings.host + "/games/" + message.id + "/join";
