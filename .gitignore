@@ -17,3 +17,5 @@ ebin
 log
 erl_crash.dump
 .rebar
+/dev
+/build

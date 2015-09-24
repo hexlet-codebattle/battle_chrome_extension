@@ -14,11 +14,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": [
-      "lib/jquery.min.js",
-      "lib/bullet.js",
-      "lib/lodash.min.js",
-      "scripts/build/background.js"
-   ]
-  }
+    "page": "background.html"
+  },
+  "content_security_policy": "default-src 'self'; script-src 'self' https://localhost:3000 'unsafe-eval'; connect-src https://localhost:3000 wss://localhost:3000 ws://localhost:35729 ws://localhost:8080; style-src * 'unsafe-inline'; img-src 'self' data:; font-src * 'self' data:;"
 }

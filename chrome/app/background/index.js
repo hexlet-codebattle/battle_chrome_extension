@@ -1,7 +1,11 @@
+require("expose?$!expose?jQuery!jquery");
+import _ from "lodash";
+import "./bullet";
+
 //FIXME switch settings for development or production
 var settings = {
   host: "http://wddx.ru",
-  api_call: "ws://wddx.ru/ws/api/v1/games"
+  api_call: "ws://localhost:8080/ws/api/v1/games"
 };
 
 var messages = {"opened": [], "started": []}
@@ -71,7 +75,7 @@ $(function(){
     };
 
     bullet.onmessage = function(e){
-      response = $.parseJSON(e.data);
+      let response = $.parseJSON(e.data);
       handlers[response.handler](response.data);
       helpers.setBadgeText();
     };
