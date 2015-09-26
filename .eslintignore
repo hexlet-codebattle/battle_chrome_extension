@@ -1,4 +1,6 @@
 node_modules
 build
 dev
+backend
 webpack/replace
+chrome/app/background/bullet.js

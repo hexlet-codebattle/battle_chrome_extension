@@ -1,30 +1,30 @@
-{
-  "extends": "eslint-config-airbnb",
-  "globals": {
-    "chrome": true,
-    "__DEVELOPMENT__": true
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "rules": {
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2,
-    "react/jsx-quotes": 0,
-    "block-scoped-var": 0,
-    "padded-blocks": 0,
-    "quotes": [ 1, "single" ],
-    "comma-style": [ 2, "last" ],
-    "eol-last": 0,
-    "no-unused-vars": 0,
-    "no-console": 0,
-    "func-names": 0,
-    "prefer-const": 0,
-    "comma-dangle": 0
-  },
-  "plugins": [
-    "react"
-  ]
-}
+---
+parser: babel-eslint
+plugins:
+  - react
+
+env:
+  browser: true
+  node: true
+
+rules:
+  strict: 0
+  camelcase: 1
+
+  react/display-name: 0
+  react/jsx-boolean-value: 1
+  react/jsx-no-undef: 1
+  react/jsx-quotes: 1
+  react/jsx-sort-prop-types: 0
+  react/jsx-sort-props: 0
+  react/jsx-uses-react: 1
+  react/jsx-uses-vars: 1
+  react/no-did-mount-set-state: 1
+  react/no-did-update-set-state: 1
+  react/no-multi-comp: 1
+  react/no-unknown-property: 1
+  react/prop-types: 1
+  react/react-in-jsx-scope: 1
+  react/self-closing-comp: 1
+  react/sort-comp: 0
+  react/wrap-multilines: 1
