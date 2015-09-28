@@ -1,11 +1,14 @@
+GULP=./node_modules/gulp/bin/gulp.js
+
 install:
 	npm install
 
 develop:
-	gulp
+	$(GULP)
+
 
 release:
-	gulp build && gulp compress
+	$(GULP) build && $(GULP) compress
 
 clean:
 	rm -rf build/ && rm -rf dev/ && rm -f archive.zip
