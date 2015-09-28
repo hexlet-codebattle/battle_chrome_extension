@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "",
   "main": "npm init",
-  "directories": {
-    "test": "test"
-  },
   "scripts": {
     "dev": "gulp",
     "build": "gulp build",
@@ -15,19 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/kaize/battle_chrome_extension.git"
+    "url": "git://github.com/Hexlet/battle_chrome_extension.git"
   },
-  "author": "",
-  "license": "ISC",
+  "homepage": "https://github.com/Hexlet/battle_chrome_extension",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaize/battle_chrome_extension/issues"
+    "url": "https://github.com/Hexlet/battle_chrome_extension/issues"
   },
-  "homepage": "https://github.com/kaize/battle_chrome_extension",
-  "dependencies": {
-    "react": "^0.14.0-rc1",
-    "lodash": "2.4.1",
-    "jquery": "2.1.0"
-  },
+  "homepage": "https://github.com/Hexlet/battle_chrome_extension",
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
@@ -37,7 +29,7 @@
     "eslint": "^1.1.0",
     "eslint-loader": "*",
     "eslint-config-airbnb": "0.0.7",
-    "eslint-plugin-react": "^3.2.3",
+    "eslint-plugin-react": "^3.4.2",
     "react-transform-catch-errors": "^0.1.1",
     "react-transform-hmr": "^0.1.1",
     "redbox-react": "^1.0.1",
@@ -55,5 +47,12 @@
     "bootstrap": "*",
     "url-loader": "*",
     "expose-loader": "*"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "jquery": "^2.1.4",
+    "classnames": "^2.1.3",
+    "react": "^0.14.0-rc1",
+    "react-dom": "^0.14.0-rc1"
   }
 }
