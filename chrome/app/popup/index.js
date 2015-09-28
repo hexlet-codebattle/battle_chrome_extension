@@ -1,15 +1,14 @@
-require("expose?$!expose?jQuery!jquery");
-require("expose?React!react");
+require('expose?$!expose?jQuery!jquery');
+require('expose?React!react');
+require('../../assets/stylesheets/application.css');
+require('bootstrap/dist/css/bootstrap.min.css');
 
-require("../../assets/stylesheets/application.css");
-require("bootstrap/dist/css/bootstrap.min.css");
+import {settings} from '../settings'
+import OpenedGames from '../../../app/components/OpenedGames';
+import StartedGames from '../../../app/components/StartedGames';
+import ReactDOM from 'react-dom';
 
-var settings = chrome.extension.getBackgroundPage().settings;
-
-import OpenedGames from "../../../app/components/OpenedGames";
-import StartedGames from "../../../app/components/StartedGames";
-
-$(function() {
-  React.renderComponent(OpenedGames({type: "opened"}), document.getElementById('opened_games'));
-  React.renderComponent(StartedGames({type: "started"}), document.getElementById('started_games'));
+$(() => {
+  ReactDOM.render(<OpenedGames type="opened"/>, $('#opened_games')[0]);
+  ReactDOM.render(<StartedGames type="started"/>, $('#started_games')[0]);
 });

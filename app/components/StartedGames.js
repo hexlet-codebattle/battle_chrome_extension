@@ -1,37 +1,47 @@
-import SetIntervalMixin from "../mixin/mixin";
+import React, { Component } from 'react';
+import _ from 'lodash';
 
-export default React.createClass({
-  getInitialState: function() {
-    return {messages: []};
-  },
+export default class StartedGames extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {messages: []};
+  }
 
-  mixins: [SetIntervalMixin],
+  componentWillMount() {
+    this.getMessagesFromServer.apply(this);
+    setInterval(this.getMessagesFromServer.bind(this), 500);
+  }
 
-  render: function() {
-    var messages = this.state.messages;
+  getMessagesFromServer() {
+    let messages = chrome.extension.getBackgroundPage().messages;
+    this.setState({messages: messages[this.props.type]});
+  }
 
+  render () {
+    const messages = this.state.messages;
     return (
       <dl>
-        <dt><h4>Started games <span className="badge">{messages.length}</span></h4></dt>
+        <dt><h4>Started games <span className='badge'>{messages.length}</span></h4></dt>
         {messages.length > 0 ?
           messages.map(function(message) {
-            href = settings.host + "/games/" + message.id;
-            nicknames = _.pluck(message.players, "nickname");
-            player_langs = _.pluck(message.players, "lang");
+          var href = 'https://wddx.ru/games/' + message.id;
+          var nicknames = _.pluck(message.players, 'nickname');
+          var playerLangs = _.pluck(message.players, 'lang');
 
-            return (
-              <dd>
-                <span>{player_langs.join("/")} : </span>
-                <a href={href} target="_blank" className="game-link">
-                  {nicknames.join(" vs ")}
-                </a>
-              </dd>
-            )
-          }, this)
-        : ""
+          return (
+            <dd>
+              <span>{playerLangs.join('/')} : </span>
+              <a href={href} target='_blank' className='game-link'>
+                {nicknames.join(' vs ')}
+              </a>
+            </dd>
+            );
+        }, this)
+          : ''
         }
       </dl>
-    )
+    );
   }
-});
+};
 
+export default StartedGames;

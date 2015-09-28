@@ -1,87 +1,83 @@
-require("expose?$!expose?jQuery!jquery");
-import _ from "lodash";
-import "./bullet";
+require('expose?$!expose?jQuery!jquery');
+import _ from 'lodash';
+import './bullet';
+import {settings} from '../settings';
 
-//FIXME switch settings for development or production
-var settings = {
-  host: "http://wddx.ru",
-  api_call: "ws://localhost:8080/ws/api/v1/games"
-};
+var messages = {'opened': [], 'started': []};
 
-var messages = {"opened": [], "started": []}
-
-var helpers = {
-  deleteMessage: function(type, msg) {
-    messages[type] = _.reject(messages[type], {id: msg.id})
+const helpers = {
+  deleteMessage: (type, msg) => {
+    messages[type] = _.reject(messages[type], {id: msg.id});
   },
 
-  clearMessages: function() {
-    messages = {"opened": [], "started": []}
+  clearMessages: () => {
+    messages = {'opened': [], 'started': []};
   },
 
-  addMessage: function(type, msg) {
+  addMessage: (type, msg) => {
     messages[type] = messages[type].concat(msg);
   },
 
-  setBadgeText: function() {
-    //NOTE Можно не пересчитывать каждый раз полностью.
-    var msg_count = messages["opened"].length + messages["started"].length;
-    var text = "";
-    if (msg_count > 0){
-      text += msg_count;
+  setBadgeText: () => {
+    // NOTE Можно не пересчитывать каждый раз полностью.
+    const msgCount = messages['opened'].length + messages['started'].length;
+    let text = '';
+    if (msgCount > 0) {
+      text += msgCount;
     }
     chrome.browserAction.setBadgeText({text: text});
+    console.warn(messages);
   }
-}
+};
 
-var handlers = {
-
-  openGame: function(msg) {
-    helpers.addMessage("opened", msg);
+const handlers = {
+  openGame: (msg) => {
+    helpers.addMessage('opened', msg);
+    window.messages = messages;
   },
 
-  startGame: function(msg) {
-    helpers.deleteMessage("opened", msg);
-    helpers.addMessage("started", msg);
+  startGame: (msg) => {
+    helpers.deleteMessage('opened', msg);
+    helpers.addMessage('started', msg);
+    window.messages = messages;
   },
 
-  finishGame: function(msg) {
-    if (!helpers.deleteMessage("started", msg)) {
-      helpers.deleteMessage("opened", msg);
+  finishGame: (msg) => {
+    if (!helpers.deleteMessage('started', msg)) {
+      helpers.deleteMessage('opened', msg);
     }
+    window.messages = messages;
   }
+};
 
-}
+$(() => {
+  const currentSettings = __DEVELOPMENT__ ? settings.dev : settings.prod;
+  const bullet = $.bullet(currentSettings.api_call);
+  bullet.onopen = () => {
+    console.log('bullet: opened');
+    helpers.clearMessages();
+    helpers.setBadgeText();
+  };
 
-$(function(){
-  (function establish_connection(){
-    var bullet = $.bullet(settings.api_call);
-    bullet.onopen = function(){
-      console.log('bullet: opened');
-      helpers.clearMessages();
-      helpers.setBadgeText();
-    };
+  bullet.ondisconnect = () => {
+    console.log('bullet: disconnected');
+    helpers.clearMessages();
+    helpers.setBadgeText();
+  };
 
-    bullet.ondisconnect = function(){
-      console.log('bullet: disconnected');
-      helpers.clearMessages();
-      helpers.setBadgeText();
-    };
+  bullet.onclose = () => {
+    console.log('bullet: closed');
+    helpers.clearMessages();
+    helpers.setBadgeText();
+  };
 
-    bullet.onclose = function(){
-      console.log('bullet: closed');
-      helpers.clearMessages();
-      helpers.setBadgeText();
-    };
+  bullet.onmessage = (e) => {
+    let response = $.parseJSON(e.data);
+    handlers[response.handler](response.data);
+    helpers.setBadgeText();
+  };
 
-    bullet.onmessage = function(e){
-      let response = $.parseJSON(e.data);
-      handlers[response.handler](response.data);
-      helpers.setBadgeText();
-    };
-
-    bullet.onheartbeat = function(){
-      bullet.send('ping');
-    }
-  })();
+  bullet.onheartbeat = () => {
+    bullet.send('ping');
+  };
 });
