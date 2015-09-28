@@ -7,7 +7,7 @@ var messages = {'opened': [], 'started': []};
 
 const helpers = {
   deleteMessage: (type, msg) => {
-    messages[type] = _.reject(messages[type], {id: msg.id});
+    messages[type] = _.reject(messages[type], {game: msg.game});
   },
 
   clearMessages: () => {
@@ -26,23 +26,22 @@ const helpers = {
       text += msgCount;
     }
     chrome.browserAction.setBadgeText({text: text});
-    console.warn(messages);
   }
 };
 
 const handlers = {
-  openGame: (msg) => {
+  gameOpened: (msg) => {
     helpers.addMessage('opened', msg);
     window.messages = messages;
   },
 
-  startGame: (msg) => {
+  gameStarted: (msg) => {
     helpers.deleteMessage('opened', msg);
     helpers.addMessage('started', msg);
     window.messages = messages;
   },
 
-  finishGame: (msg) => {
+  gameFinished: (msg) => {
     if (!helpers.deleteMessage('started', msg)) {
       helpers.deleteMessage('opened', msg);
     }

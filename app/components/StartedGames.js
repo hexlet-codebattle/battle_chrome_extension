@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { settings } from '../../chrome/app/settings';
 
 export default class StartedGames extends Component {
+
   constructor(props) {
     super(props);
     this.state = {messages: []};
@@ -14,19 +16,21 @@ export default class StartedGames extends Component {
 
   getMessagesFromServer() {
     let messages = chrome.extension.getBackgroundPage().messages;
-    this.setState({messages: messages[this.props.type]});
+    if (messages)
+      this.setState({messages: messages[this.props.type]});
   }
 
   render () {
+    const currentSettings = __DEVELOPMENT__ ? settings.dev : settings.prod;
     const messages = this.state.messages;
     return (
       <dl>
         <dt><h4>Started games <span className='badge'>{messages.length}</span></h4></dt>
         {messages.length > 0 ?
           messages.map(function(message) {
-          var href = 'https://wddx.ru/games/' + message.id;
-          var nicknames = _.pluck(message.players, 'nickname');
-          var playerLangs = _.pluck(message.players, 'lang');
+          var href = currentSettings.host + '/games/' + message.game.id;
+          var nicknames = _.pluck(message.members, 'username');
+          var playerLangs = _.pluck(message.members, 'lang');
 
           return (
             <dd>

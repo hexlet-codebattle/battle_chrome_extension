@@ -1,17 +1,20 @@
 import cx from 'classnames';
+import { settings } from '../../chrome/app/settings';
 
 const OpenedGame = (props) => {
+  const currentSettings = __DEVELOPMENT__ ? settings.dev : settings.prod;
+
   const message = props.message;
-  let href = 'http://wddx.ru/games/' + message.id + '/join';
+  const mainHref = currentSettings.host + '/games/' + message.game.id + '/join';
 
   return (
     <div>
-      {message.game.level + ' ' + message.player.lang + ' game by '} <a href='#'>{message.player.nickname}</a>.
+      {message.game.challenge_level + ' ' + message.game_member.lang + ' game by '} <a href='#'>{message.game_member.username}</a>.
 
       <p>
         join as:
-        {message.extended_langs.map((langInfo) => {
-          href = href + '?lang=' + langInfo.lang;
+        {message.game.build_langs.map((langInfo) => {
+          let href = mainHref + '?lang=' + langInfo.lang;
           const classes = cx({game_passed_link: langInfo.passed});
 
           return (
