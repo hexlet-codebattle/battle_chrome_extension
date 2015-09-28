@@ -14,7 +14,8 @@ export default class OpenedGames extends Component {
 
   getMessagesFromServer() {
     let messages = chrome.extension.getBackgroundPage().messages;
-    this.setState({messages: messages[this.props.type]});
+    if (messages)
+      this.setState({messages: messages[this.props.type]});
   }
 
   render() {
@@ -29,7 +30,7 @@ export default class OpenedGames extends Component {
           messages.length > 0 ?
             messages.map((message) => {
             return (
-              <dd><OpenedGame key={message.id} message={message} /></dd>
+              <dd><OpenedGame key={message.game.id} message={message} /></dd>
               );
           }, this)
             : ''
