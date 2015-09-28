@@ -13,25 +13,27 @@ stream(Msg, Req, State) ->
     {reply, Msg, Req, State}.
 
 info({game, opened, GameId}, Req, State) ->
-    ExtendedLangs = [ [ {lang, <<"Ruby">>}, {passed, true} ] ],
-    PlayerInfo = [{nickname, <<"FirstPlayer">>}, {lang, <<"Ruby">>}],
-    GameInfo = [{level, 1}],
-    Data = [{id, GameId}, {player, PlayerInfo}, {game, GameInfo}, {extended_langs, ExtendedLangs}],
-    Reply = [{handler, openGame}, {data, Data}],
+    BuildLangs = [ [ {lang, <<"Ruby">>}, {passed, true} ] ],
+    GameMember = [{username, <<"FirstPlayer">>}, {lang, <<"Ruby">>}],
+    GameInfo = [{id, GameId}, {challenge_level, 1}, {build_langs, BuildLangs} ],
+    Data = [{game_member, GameMember}, {game, GameInfo}],
+    Reply = [{handler, gameOpened}, {data, Data}],
     {reply, jsx:encode(Reply), Req, State};
 
 info({game, started, GameId}, Req, State) ->
-    PlayerInfos = [
-                   [{nickname, <<"FirstPlayer">>}, {lang, <<"Ruby">>}],
-                   [{nickname, <<"SecondPlayer">>}, {lang, <<"Erlang">>}]
+    Members = [
+                   [{username, <<"FirstPlayer">>}, {lang, <<"Ruby">>}],
+                   [{username, <<"SecondPlayer">>}, {lang, <<"Erlang">>}]
                   ],
-    Data = [{id, GameId}, {players, PlayerInfos}],
-    Reply = [{handler, startGame}, {data, Data}],
+    GameInfo = [{id, GameId}],
+    Data = [{game, GameInfo}, {members, Members}],
+    Reply = [{handler, gameStarted}, {data, Data}],
     {reply, jsx:encode(Reply), Req, State};
 
 info({game, finished, GameId}, Req, State) ->
-    Data = [{id, GameId}],
-    Reply = [{handler, finishGame}, {data, Data}],
+    GameInfo = [{id, GameId}],
+    Data = [{game, GameInfo}],
+    Reply = [{handler, gameFinished}, {data, Data}],
     {reply, jsx:encode(Reply), Req, State};
 
 info(Msg, Req, State) ->
