@@ -4,6 +4,7 @@ import gutil from "gulp-util";
 import jade from "gulp-jade";
 import zip from "gulp-zip";
 import rename from "gulp-rename";
+import eslint from "gulp-eslint";
 
 import webpack from "webpack";
 import WebpackDevServer from "webpack-dev-server";
@@ -97,6 +98,12 @@ gulp.task("zip:compress", () => {
   .pipe(gulp.dest("."));
 });
 
+gulp.task("eslint", () => {
+  return gulp.src(["**/*.js", "!node_modules/**/*", "!backend/**/*"])
+  .pipe(eslint({useEslintrc: true}))
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError());
+});
 
 
 gulp.task("default", ["replace-webpack-code", "webpack-dev-server", "views:dev", "copy:dev"]);
