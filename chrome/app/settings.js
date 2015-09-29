@@ -4,7 +4,7 @@ export const settings = {
     api_call: 'wss://game.hexlet-staging.ru/ws/api/v1/games'
   },
   prod: {
-    host: 'http://wddx.ru',
-    api_call: 'ws://wddx.ru:8080/ws/api/v1/games'
+    host: 'http://ru.hexlet.io',
+    api_call: 'wss://game.hexlet.io/ws/api/v1/games'
   }
 };

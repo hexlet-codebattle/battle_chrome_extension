@@ -1,5 +1,8 @@
 GULP=./node_modules/gulp/bin/gulp.js
 
+all:
+	npm cache clean && rm -rf ./node_modules
+
 install:
 	npm install
 
@@ -13,5 +16,5 @@ release:
 clean:
 	rm -rf build/ && rm -rf dev/ && rm -f archive.zip
 
-.PHONY: install develop release clean
+.PHONY: all install develop release clean
 
