@@ -46,7 +46,8 @@
     "autoprefixer-loader": "*",
     "bootstrap": "*",
     "url-loader": "*",
-    "expose-loader": "*"
+    "expose-loader": "*",
+    "file-loader": "*"
   },
   "dependencies": {
     "lodash": "^3.10.1",
