@@ -16,5 +16,5 @@
   "background": {
     "page": "background.html"
   },
-  "content_security_policy": "default-src 'self'; script-src 'self' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+  "content_security_policy": "default-src 'self'; connect-src wss://game.hexlet.io/ws/api/v1/games; script-src 'self' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src 'self' data:; font-src * 'self' data:;"
 }
