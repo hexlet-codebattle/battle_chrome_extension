@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Battlecode games",
-  "description": "This extension shows how many games opened on wddx.ru.",
-  "version": "0.2.1",
+  "name": "Hexlet Battles",
+  "description": "This extension show games from hexlet battles",
+  "version": "0.3.0",
 
   "permissions": [
     "tabs",
