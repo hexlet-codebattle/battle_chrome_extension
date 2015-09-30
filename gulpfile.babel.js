@@ -12,6 +12,8 @@ import WebpackDevServer from "webpack-dev-server";
 import devConfig from "./webpack/dev.config";
 import prodConfig from "./webpack/prod.config";
 
+import {settings} from "./chrome/app/settings"
+
 const PORT = 3000;
 const DEV_FOLDER = "./dev";
 const PROD_FOLDER = "./build";
@@ -49,7 +51,7 @@ gulp.task("webpack-dev-server", () => {
 gulp.task("views:dev", () => {
   gulp.src("./chrome/views/*.jade")
   .pipe(jade({
-    locals: { env: 'dev' }
+    locals: { env: "dev" , settings: settings }
   }))
   .pipe(gulp.dest(DEV_FOLDER));
 });
@@ -78,7 +80,7 @@ gulp.task("webpack:build", (callback) => {
 gulp.task("views:prod", () => {
   gulp.src("./chrome/views/*.jade")
   .pipe(jade({
-    locals: { env: 'prod' }
+    locals: { env: "prod", settings: settings }
   }))
   .pipe(gulp.dest(PROD_FOLDER));
 });
