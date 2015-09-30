@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import OpenedGame from './OpenedGame';
+import React, { Component } from "react";
+import OpenedGame from "./OpenedGame";
 
 export default class OpenedGames extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class OpenedGames extends Component {
     return (
       <dl>
         <dt>
-          <h4>Opened games <span className='badge'>{messages.length}</span></h4>
+          <h4>Opened games <span className="badge">{messages.length}</span></h4>
         </dt>
 
         {
@@ -33,9 +33,13 @@ export default class OpenedGames extends Component {
               <dd><OpenedGame key={message.game.id} message={message} /></dd>
               );
           }, this)
-            : ''
+            : ""
         }
       </dl>
     );
   }
 };
+
+OpenedGames.propTypes = { type: React.PropTypes.string.isRequired };
+
+
