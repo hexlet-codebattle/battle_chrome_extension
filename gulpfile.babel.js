@@ -93,7 +93,7 @@ gulp.task("copy:prod", () => {
 });
 
 gulp.task("zip:compress", () => {
-  gulp.src(`${PROD_FOLDER}/*`)
+  gulp.src(`${PROD_FOLDER}/**/*`)
   .pipe(zip("archive.zip"))
   .pipe(gulp.dest("."));
 });
