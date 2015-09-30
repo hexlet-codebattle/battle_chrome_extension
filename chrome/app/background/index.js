@@ -20,7 +20,7 @@ const helpers = {
 
   setBadgeText: () => {
     // NOTE Можно не пересчитывать каждый раз полностью.
-    const msgCount = messages["opened"].length + messages["started"].length;
+    const msgCount = messages["opened"].length;
     let text = "";
     if (msgCount > 0) {
       text += msgCount;
