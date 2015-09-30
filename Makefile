@@ -15,7 +15,7 @@ release:
 	$(GULP) build && $(GULP) compress
 
 clean:
-	rm -rf build/ && rm -f archive.zip
+	rm -rf build/ && rm -rf dist/
 
 .PHONY: all clean_env install develop release clean
 

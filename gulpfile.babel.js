@@ -17,6 +17,7 @@ import {settings} from "./chrome/app/settings"
 const PORT = 3000;
 const DEV_FOLDER = "./dev";
 const PROD_FOLDER = "./build";
+const RELEASE_FOLDER = "./dist"
 
 gulp.task("replace-webpack-code", () => {
   const replaceTasks = [ {
@@ -95,8 +96,9 @@ gulp.task("copy:prod", () => {
 });
 
 gulp.task("zip:compress", () => {
-  gulp.src(`${PROD_FOLDER}/**/*`)
-  .pipe(zip("archive.zip"))
+  let manifest = require(`${PROD_FOLDER}/manifest.json`);
+  gulp.src(`${PROD_FOLDER}/*`)
+  .pipe(zip(`${RELEASE_FOLDER}/battle-extension-${manifest.version}.zip`))
   .pipe(gulp.dest("."));
 });
 
