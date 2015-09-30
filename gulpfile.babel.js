@@ -97,7 +97,7 @@ gulp.task("copy:prod", () => {
 
 gulp.task("zip:compress", () => {
   let manifest = require(`${PROD_FOLDER}/manifest.json`);
-  gulp.src(`${PROD_FOLDER}/*`)
+  gulp.src(`${PROD_FOLDER}/**/*`)
   .pipe(zip(`${RELEASE_FOLDER}/battle-extension-${manifest.version}.zip`))
   .pipe(gulp.dest("."));
 });
