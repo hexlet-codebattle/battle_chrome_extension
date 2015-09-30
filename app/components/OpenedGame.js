@@ -10,7 +10,7 @@ const OpenedGame = (props) => {
 
   return (
     <div>
-      {message.game.challenge_level + " " + message.game_member.lang + " game by "} <a href="#">{message.game_member.username}</a>.
+      {message.game.challenge_build.level + " " + message.game_member.lang + " game by "} <a href="#">{message.game_member.username}</a>.
 
       <p>
         join as:
