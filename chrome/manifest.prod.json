@@ -19,5 +19,5 @@
   "icons": {
     "128": "images/icon.png"
   },
-  "content_security_policy": "default-src 'self'; connect-src wss://game.hexlet.io/ws/api/v1/games; script-src 'self' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src 'self' data:; font-src * 'self' data:;"
+  "content_security_policy": "default-src 'self'; connect-src https://game.hexlet.io/ws/api/v1/games wss://game.hexlet.io/ws/api/v1/games; script-src 'self' 'unsafe-eval'; style-src * 'unsafe-inline'; img-src 'self' data:; font-src * 'self' data:;"
 }
