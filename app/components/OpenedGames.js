@@ -23,7 +23,7 @@ export default class OpenedGames extends Component {
     return (
       <dl>
         <dt>
-          <h4>Opened games <span className="badge">{messages.length}</span></h4>
+          <h4>Open games <span className="badge">{messages.length}</span></h4>
         </dt>
 
         {
@@ -41,5 +41,3 @@ export default class OpenedGames extends Component {
 };
 
 OpenedGames.propTypes = { type: React.PropTypes.string.isRequired };
-
-
