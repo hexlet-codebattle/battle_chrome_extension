@@ -3,6 +3,9 @@ REBAR = ./bin/rebar3
 
 all: deps clean compile
 
+deps:
+	@$(REBAR) deps
+
 clean:
 	@$(REBAR) clean
 
