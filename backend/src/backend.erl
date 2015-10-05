@@ -10,7 +10,7 @@ start() ->
 
 stop() ->
     Apps  = [ ranch, cowboy, backend],
-    [application:strop(App) || App <- Apps],
+    [application:stop(App) || App <- Apps],
     ok.
 
 restart() ->

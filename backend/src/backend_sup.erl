@@ -8,8 +8,6 @@
 
 -define(SERVER, ?MODULE).
 
--define(CHILD(I, Restart, Type), {I, {I, start_link, []}, Restart, 5000, Type, [I]}).
-
 start_link() ->
     supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
