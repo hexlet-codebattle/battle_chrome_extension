@@ -4,37 +4,34 @@ import OpenedGame from "./OpenedGame";
 export default class OpenedGames extends Component {
   constructor(props) {
     super(props);
-    this.state = {messages: []};
+    this.state = {games: []};
   }
 
   componentWillMount() {
-    this.getMessagesFromServer.apply(this);
-    setInterval(this.getMessagesFromServer.bind(this), 500);
+    this.getMessagesFromServer();
+    setInterval(this.getMessagesFromServer.bind(this), 3000);
   }
 
   getMessagesFromServer() {
-    let messages = chrome.extension.getBackgroundPage().messages;
-    if (messages)
-      this.setState({messages: messages[this.props.type]});
+    const games = chrome.extension.getBackgroundPage().getGames(this.props.type);
+    if (games) {
+      this.setState({ games: games });
+    }
   }
 
   render() {
-    const messages = this.state.messages;
+    const games = this.state.games;
     return (
       <dl>
         <dt>
-          <h4>Open games <span className="badge">{messages.length}</span></h4>
+          <h4>Open games <span className="badge">{games.length}</span></h4>
         </dt>
 
-        {
-          messages.length > 0 ?
-            messages.map((message) => {
-            return (
-              <dd><OpenedGame key={message.game.id} message={message} /></dd>
-              );
-          }, this)
-            : ""
-        }
+        { games.length > 0 ?
+            games.map((game) => {
+              return <dd key={"opened-" + game.game.id}><OpenedGame key={game.game.id} game={game} /></dd>;
+            })
+          : "" }
       </dl>
     );
   }

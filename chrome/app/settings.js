@@ -1,4 +1,4 @@
-export const settings = {
+const settings = {
   dev: {
     host: "http://ru.hexlet-staging.ru",
     apiCall: "wss://game.hexlet-staging.ru/ws/api/v1/games"
@@ -8,3 +8,10 @@ export const settings = {
     apiCall: "wss://game.hexlet.io/ws/api/v1/games"
   }
 };
+
+
+if (__DEVELOPMENT__) {
+  module.exports = settings.dev;
+} else {
+  module.exports = settings.prod;
+}

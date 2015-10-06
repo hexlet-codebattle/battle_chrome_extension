@@ -3,7 +3,6 @@ require("expose?React!react");
 require("../../assets/stylesheets/application.css");
 require("bootstrap/dist/css/bootstrap.min.css");
 
-import {settings} from "../settings"
 import OpenedGames from "../../../app/components/OpenedGames";
 import StartedGames from "../../../app/components/StartedGames";
 import React from "react";

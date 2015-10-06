@@ -1,52 +1,50 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { settings } from "../../chrome/app/settings";
+import SETTINGS from "../../chrome/app/settings";
 
 export default class StartedGames extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {messages: []};
+    this.state = {games: []};
   }
 
   componentWillMount() {
-    this.getMessagesFromServer.apply(this);
-    setInterval(this.getMessagesFromServer.bind(this), 500);
+    this.getMessagesFromServer();
+    setInterval(this.getMessagesFromServer.bind(this), 3000);
   }
 
   getMessagesFromServer() {
-    let messages = chrome.extension.getBackgroundPage().messages;
-    if (messages)
-      this.setState({messages: messages[this.props.type]});
+    const games = chrome.extension.getBackgroundPage().getGames(this.props.type);
+    if (games) {
+      this.setState({ games: games });
+    }
   }
 
   render () {
-    const currentSettings = __DEVELOPMENT__ ? settings.dev : settings.prod;
-    const messages = this.state.messages;
+    const games = this.state.games;
     return (
       <dl>
-        <dt><h4>Started games <span className="badge">{messages.length}</span></h4></dt>
-        {messages.length > 0 ?
-          messages.map(function(message) {
-          var href = currentSettings.host + "/games/" + message.game.id;
-          var nicknames = _.pluck(message.members, "username");
-          var playerLangs = _.pluck(message.members, "lang");
+        <dt><h4>Started games <span className="badge">{games.length}</span></h4></dt>
+        {games.length > 0 ?
+          games.map((game) => {
+            const href = SETTINGS.host + "/games/" + game.game.id;
+            const nicknames = _.pluck(game.members, "username");
+            const playerLangs = _.pluck(game.members, "lang");
 
-          return (
-            <dd>
-              <span>{playerLangs.join("/")} : </span>
-              <a href={href} target="_blank" className="game-link">
-                {nicknames.join(" vs ")}
-              </a>
-            </dd>
-            );
-        }, this)
-          : ""
-        }
+            return (
+              <dd key={"started-" + game.game.id}>
+                <span>{playerLangs.join("/")} : </span>
+                <a href={href} target="_blank" className="game-link">
+                  {nicknames.join(" vs ")}
+                </a>
+              </dd>
+              );
+          })
+        : "" }
       </dl>
     );
   }
 };
 
 StartedGames.propTypes = { type: React.PropTypes.string.isRequired };
-

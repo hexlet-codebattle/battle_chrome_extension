@@ -1,82 +1,87 @@
 require("expose?$!expose?jQuery!jquery");
 import _ from "lodash";
 import "./bullet";
-import {settings} from "../settings";
+import SETTINGS from "../settings";
 
-var messages = {"opened": [], "started": []};
-
-const helpers = {
-  deleteMessage: (type, msg) => {
-    messages[type] = _.reject(messages[type], {game: msg.game});
-  },
-
-  clearMessages: () => {
-    messages = {"opened": [], "started": []};
-  },
-
-  addMessage: (type, msg) => {
-    messages[type] = messages[type].concat(msg);
-  },
-
-  setBadgeText: () => {
-    // NOTE Можно не пересчитывать каждый раз полностью.
-    const msgCount = messages["opened"].length;
-    let text = "";
-    if (msgCount > 0) {
-      text += msgCount;
-    }
-    chrome.browserAction.setBadgeText({text: text});
-  }
+const state = {
+  games: []
 };
 
+function syncGame(data) {
+  const idx = _.findIndex(state.games, (item) => item.game.id === data.game.id);
+  if (idx !== -1) {
+    state.games[idx] = data;
+  } else {
+    state.games.unshift(data);
+  }
+}
+
+function removeGame(data) {
+  state.games = _.without(state.games, (item) => item.game.id === data.game.id);
+}
+
+function setBadgeText() {
+  // NOTE Можно не пересчитывать каждый раз полностью.
+  const msgCount = _.filter(state.games, (i) => i.game_process.state === "opened").length;
+  let text = "";
+  if (msgCount > 0) {
+    text += msgCount;
+  }
+  chrome.browserAction.setBadgeText({ text: text });
+}
+
 const handlers = {
-  gameOpened: (msg) => {
-    helpers.addMessage("opened", msg);
-    window.messages = messages;
+  syncGames(data) {
+    state.games = data;
   },
 
-  gameStarted: (msg) => {
-    helpers.deleteMessage("opened", msg);
-    helpers.addMessage("started", msg);
-    window.messages = messages;
+  opened(data) {
+    syncGame(data);
   },
 
-  gameFinished: (msg) => {
-    if (!helpers.deleteMessage("started", msg)) {
-      helpers.deleteMessage("opened", msg);
-    }
-    window.messages = messages;
+  started(data) {
+    syncGame(data);
+  },
+
+  finished(data) {
+    removeGame(data);
   }
 };
 
 $(() => {
-  const currentSettings = __DEVELOPMENT__ ? settings.dev : settings.prod;
-  const bullet = $.bullet(currentSettings.apiCall);
+  const bullet = $.bullet(SETTINGS.apiCall);
+
   bullet.onopen = () => {
     console.log("bullet: opened");
-    helpers.clearMessages();
-    helpers.setBadgeText();
+    state.games = [];
+    setBadgeText();
   };
 
   bullet.ondisconnect = () => {
     console.log("bullet: disconnected");
-    helpers.clearMessages();
-    helpers.setBadgeText();
+    state.games = [];
+    setBadgeText();
   };
 
   bullet.onclose = () => {
     console.log("bullet: closed");
-    helpers.clearMessages();
-    helpers.setBadgeText();
+    state.games = [];
+    setBadgeText();
   };
 
   bullet.onmessage = (e) => {
     let response = $.parseJSON(e.data);
+    console.log("bullet: onmessage", response);
     handlers[response.handler](response.data);
-    helpers.setBadgeText();
+    setBadgeText();
   };
 
   bullet.onheartbeat = () => {
     bullet.send("ping");
   };
 });
+
+// PUBLIC API
+window.getGames = function(gameState) {
+  return _.filter(state.games, (i) => i.game_process.state === gameState);
+}
