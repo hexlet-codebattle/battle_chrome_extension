@@ -1,4 +1,4 @@
-const settings = {
+export const settings = {
   dev: {
     host: "http://ru.hexlet-staging.ru",
     apiCall: "wss://game.hexlet-staging.ru/ws/api/v1/games"
@@ -9,9 +9,4 @@ const settings = {
   }
 };
 
-
-if (__DEVELOPMENT__) {
-  module.exports = settings.dev;
-} else {
-  module.exports = settings.prod;
-}
+export default (process.env.NODE_ENV === "production") ? settings.prod : settings.dev;

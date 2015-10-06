@@ -81,7 +81,7 @@ gulp.task("webpack:build", (callback) => {
 gulp.task("views:prod", () => {
   gulp.src("./chrome/views/*.jade")
   .pipe(jade({
-    locals: { env: "prod", settings: settings }
+    locals: { env: "prod", settings: settings.prod }
   }))
   .pipe(gulp.dest(PROD_FOLDER));
 });

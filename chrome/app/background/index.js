@@ -48,7 +48,7 @@ const handlers = {
   }
 };
 
-$(() => {
+function initWS() {
   const bullet = $.bullet(SETTINGS.apiCall);
 
   bullet.onopen = () => {
@@ -79,6 +79,16 @@ $(() => {
   bullet.onheartbeat = () => {
     bullet.send("ping");
   };
+
+  return bullet;
+}
+
+$(() => {
+  var ws = initWS();
+  setInterval(() => {
+    ws.close();
+    ws = initWS();
+  }, 10000);
 });
 
 // PUBLIC API
