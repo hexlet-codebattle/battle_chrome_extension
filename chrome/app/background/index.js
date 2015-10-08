@@ -86,13 +86,13 @@ function initWS() {
   return bullet;
 }
 
-$(() => {
-  var ws = initWS();
-  setInterval(() => {
-    ws.close();
-    ws = initWS();
-  }, 10000);
-});
+// $(() => {
+//   var ws = initWS();
+//   setInterval(() => {
+//     ws.close();
+//     ws = initWS();
+//   }, 10000);
+// });
 
 // PUBLIC API
 window.getGames = function(gameState) {
