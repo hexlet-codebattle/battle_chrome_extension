@@ -49,7 +49,10 @@ const handlers = {
 };
 
 function initWS() {
-  const bullet = $.bullet(SETTINGS.apiCall);
+  const bullet = $.bullet(SETTINGS.apiCall, {
+    disableEventSource: true,
+    disableXHRPolling: true
+  });
 
   bullet.onopen = () => {
     console.log("bullet: opened");
