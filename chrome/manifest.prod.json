@@ -3,7 +3,7 @@
 
   "name": "Hexlet Battles",
   "description": "This extension show games from hexlet battles",
-  "version": "0.3.5",
+  "version": "0.3.6",
 
   "permissions": [
     "tabs",
