@@ -10,7 +10,7 @@ clean:
 	@$(REBAR) clean
 
 compile:
-	@$(REBAR) compile
+	@$(REBAR) release
 
 run:
-	@(erl -pa _build/default/lib/*/ebin -s $(PROJECT))
+	./_build/default/rel/backend/bin/backend console

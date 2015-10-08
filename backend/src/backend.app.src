@@ -6,7 +6,10 @@
   {applications,
    [kernel,
     stdlib,
-    cowboy
+    cowboy,
+    bullet,
+    jsx,
+    ranch
    ]},
   {env,[]},
   {modules, []},

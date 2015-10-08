@@ -1,7 +1,7 @@
 export const settings = {
   dev: {
     host: "http://ru.hexlet-staging.ru",
-    apiCall: "ws://localhost:8080/ws/api/v1/games"
+    apiCall: "wss://game.hexlet-staging.ru/ws/api/v1/games"
   },
   prod: {
     host: "http://ru.hexlet.io",
