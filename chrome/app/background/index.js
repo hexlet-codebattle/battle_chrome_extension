@@ -3,9 +3,17 @@ import _ from "lodash";
 import "./bullet";
 import SETTINGS from "../settings";
 
-const state = {
-  games: []
+const ConnectionStates = {
+  DISCONNECTED: "disconnected",
+  CONNECTED: "connected"
 };
+
+const state = {
+  games: [],
+  connectionState: ConnectionStates.DISCONNECTED
+};
+
+window.state = state;
 
 function syncGame(data) {
   const idx = _.findIndex(state.games, (item) => item.game.id === data.game.id);
@@ -54,20 +62,28 @@ function initWS() {
     disableXHRPolling: true
   });
 
+
   bullet.onopen = () => {
     console.log("bullet: opened");
+
+    state.connectionState = ConnectionStates.CONNECTED;
     state.games = [];
     setBadgeText();
+
+    const json = JSON.stringify({event: "subscribe", data: {}});
+    bullet.send(json);
   };
 
   bullet.ondisconnect = () => {
     console.log("bullet: disconnected");
+    state.connectionState = ConnectionStates.DISCONNECTED;
     state.games = [];
     setBadgeText();
   };
 
   bullet.onclose = () => {
     console.log("bullet: closed");
+    state.connectionState = ConnectionStates.DISCONNECTED;
     state.games = [];
     setBadgeText();
   };
@@ -86,13 +102,16 @@ function initWS() {
   return bullet;
 }
 
-// $(() => {
-//   var ws = initWS();
-//   setInterval(() => {
-//     ws.close();
-//     ws = initWS();
-//   }, 10000);
-// });
+$(() => {
+  window.ws = initWS();
+
+  setInterval(() => {
+    if (state.connectionState === ConnectionStates.CONNECTED) {
+      const json = JSON.stringify({event: "sync_games", data: {}});
+      ws.send(json);
+    }
+  }, 15000);
+});
 
 // PUBLIC API
 window.getGames = function(gameState) {

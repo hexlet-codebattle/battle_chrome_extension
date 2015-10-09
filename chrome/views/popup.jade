@@ -1,10 +1,9 @@
 html
   head
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    script(type='text/javascript', src= env == "prod" ? "/js/popup.bundle.js" : "https://localhost:3000/js/popup.bundle.js")
+    script(src=settings.popupJsUrl)
   body
     .container
-      h3 К сожалению, сейчас расширение находится в разработке и недоступно
       ul.nav.nav-tabs
         li.active
           a(href='#') games

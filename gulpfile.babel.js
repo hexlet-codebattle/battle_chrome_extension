@@ -52,7 +52,7 @@ gulp.task("webpack-dev-server", () => {
 gulp.task("views:dev", () => {
   gulp.src("./chrome/views/*.jade")
   .pipe(jade({
-    locals: { env: "dev" , settings: settings.dev }
+    locals: { settings: settings.dev }
   }))
   .pipe(gulp.dest(DEV_FOLDER));
 });
@@ -81,7 +81,7 @@ gulp.task("webpack:build", (callback) => {
 gulp.task("views:prod", () => {
   gulp.src("./chrome/views/*.jade")
   .pipe(jade({
-    locals: { env: "prod", settings: settings.prod }
+    locals: { settings: settings.prod }
   }))
   .pipe(gulp.dest(PROD_FOLDER));
 });
