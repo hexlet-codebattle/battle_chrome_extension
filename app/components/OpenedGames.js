@@ -24,7 +24,7 @@ export default class OpenedGames extends Component {
     return (
       <dl>
         <dt>
-          <h4>Open games <span className="badge">{games.length}</span></h4>
+          <h4>Opened games <span className="badge">{games.length}</span></h4>
         </dt>
 
         { games.length > 0 ?
