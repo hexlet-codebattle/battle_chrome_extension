@@ -10,7 +10,7 @@ const OpenedGame = (props) => {
   return (
     <div>
       <a href={mainHref} target="_blank">
-        {game.game.challenge_build.level + " game by " + member.username}
+        {game.game.level + " game by " + member.username}
       </a>
     </div>
   );
