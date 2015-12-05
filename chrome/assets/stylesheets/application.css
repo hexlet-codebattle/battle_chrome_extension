@@ -24,3 +24,7 @@ a:focus {
   text-decoration: line-through;
   outline: 0px;
 }
+
+.new_game_button {
+  margin-top: 18px;
+}
