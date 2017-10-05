@@ -3,7 +3,7 @@ GULP=./node_modules/gulp/bin/gulp.js
 all: clean_env install clean release
 
 clean_env:
-	npm cache clean && rm -rf ./node_modules
+	npm cache clean --force && rm -rf ./node_modules
 
 install:
 	npm install
