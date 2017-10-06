@@ -1,5 +1,5 @@
-require("expose?$!expose?jQuery!jquery");
-require("expose?React!react");
+require("expose-loader?$!expose-loader?jQuery!jquery");
+require("expose-loader?React!react");
 require("../../assets/stylesheets/application.css");
 require("bootstrap/dist/css/bootstrap.min.css");
 

@@ -18,10 +18,8 @@ export default {
       },
       __DEVELOPMENT__: false
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      comments: false,
-      compressor: {
+      compress: {
         warnings: false
       }
     }),
@@ -32,31 +30,43 @@ export default {
     })
   ],
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: "eslint-loader",
+        enforce: "pre",
+        use: "eslint-loader",
         exclude: /(node_modules|webpack|dev|build|bullet.js)/
-      }
-    ],
-
-    loaders: [
+      },
       {
         test: /\.js$/,
-        loader: "babel?stage=0",
+        use: {
+          loader : "babel-loader",
+          options: {
+            presets: [
+              "es2015",
+              "stage-0",
+              "react",
+              "env",
+            ],
+          },
+        },
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        loader: "style!css!autoprefixer-loader"
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader'
+        ],
       },
       {
         test: /\.(png|svg|woff|woff2|eot|ttf|otf)$/,
-        loader: "url?limit=100000"
+        use: "url-loader?limit=100000"
       },
-    ]
+    ],
   }
 };
