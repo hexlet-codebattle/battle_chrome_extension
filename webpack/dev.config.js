@@ -31,31 +31,44 @@ export default {
     })
   ],
   resolve: {
-    extensions: ["", ".js"]
+    extensions: [".js"],
+    modules: ['node_modules'],
   },
-  resolveLoader: { root: path.join(__dirname, "../node_modules") },
   module: {
-    preLoaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: "eslint-loader",
+        enforce: "pre",
+        use: ["eslint-loader"],
         exclude: /(node_modules|webpack|dev|build|bullet.js)/
-      }
+      },
+      {
+        test: /\.js$/,
+        use: {
+          loader : "babel-loader",
+          options: {
+            presets: [
+              "es2015",
+              "stage-0",
+              "react",
+              "env",
+            ],
+          },
+        },
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+                use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'postcss-loader'
+        ],
+      },
+      {
+        test: /\.(png|svg|woff|woff2|eot|ttf|otf)$/,
+        use: ["url-loader?limit=100000"],
+      },
     ],
-
-    loaders: [{
-      test: /\.js$/,
-      loader: "babel?stage=0",
-      exclude: /node_modules/
-    },
-    {
-      test: /\.css$/,
-      loader: "style!css!autoprefixer-loader"
-    },
-    {
-      test: /\.(png|svg|woff|woff2|eot|ttf|otf)$/,
-      loader: "url?limit=100000"
-    },
-    ]
   }
 };
