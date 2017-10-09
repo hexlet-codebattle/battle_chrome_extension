@@ -16,4 +16,8 @@ const OpenedGame = (props) => {
   );
 };
 
+OpenedGame.propTypes = {
+  game: React.PropTypes.array.isRequired
+};
+
 export default OpenedGame;
