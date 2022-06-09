@@ -1,39 +1,39 @@
 # Codebattle Chrome extension
 [![Build Status](https://travis-ci.org/hexlet-codebattle/battle_chrome_extension.svg?branch=master)](https://travis-ci.org/hexlet-codebattle/battle_chrome_extension)
 
-## Описание:
+## Description:
 
-Расширение Chrome для hexlet-codebattle
+Chrome extension for hexlet-codebattle
 
-## Требования:
+## Requirements:
 
 - node + npm
 
-## Установка:
+## Setup:
 
 ```
 make
 ```
 
 
-## Установка расширения:
-- Перейти на ```chrome://extensions/```;
-- Проверить, что установлен "Режим разработчика" (чекбокс в правом верхнем углу);
+## Install the extension:
+- Go to ```chrome://extensions/```
+- Check that you've turned onn the "Developer Mode" (the checkbox at the top right)
 
  
-__Для работы в develop-окружении:__
+__Usage in develop-environment:__
  
-- Выбрать "Загрузить распакованное расширение...".
-- Выбрать папку ```dev``` в корневой папке расширения (если её нет, сначала проделать следующий шаг).
-- Запустить сервер командой ```make develop``` в терминале. Сервер должен быть запущен постоянно во время работы.
-- При изменении js-файлов расширение обновится автоматически. Для применения изменений в ```manifest.json``` сервер необходимо перезапустить.
+- Select "Load unpacked...".
+- Select ```dev``` folder in the extension root (if it is not there, first do the next step)
+- Launch the server by running ```make develop``` in the terminal. The server must be kept running continuously
+- If you change the js-files, the extension will be updated automatically. To apply changes to the ```manifest.json```, the server must be restarted
 
-__Для установки релизной версии:__
+__Install the release version:__
 
-- Перетащить архив расширения из папки ```dist``` в окно браузера;
-- Согласиться на установку.
+- Drag the extension archive from the ```dist``` folder into the browser window
+- Accept the installation
 
-_Или_
+_Or_
 
-- Выбрать "Загрузить распакованное расширение...";
-- Выбрать папку ```build``` в корневой папке расширения.
+- Select "Load unpacked...";
+- Select ```build``` folder in the extension root
