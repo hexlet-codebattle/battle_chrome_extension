@@ -18,7 +18,7 @@ make
 
 ## Install the extension:
 - Go to ```chrome://extensions/```
-- Check that you've turned onn the "Developer Mode" (the checkbox at the top right)
+- Check that you've turned on the "Developer Mode" (the checkbox at the top right)
 
  
 __Usage in develop-environment:__
